@@ -1,5 +1,9 @@
-package org.example;
+package org.example.model;
 
+/**
+ * Базовий абстрактний клас для всіх товарів інтернет-магазину.
+ * Використовується як обмеження узагальнень: <T extends Product>.
+ */
 public abstract class Product {
 
     private final String name;
@@ -24,7 +28,6 @@ public abstract class Product {
         return price;
     }
 
-    // Кожен підтип описує свою категорію
     public abstract String getCategory();
 
     @Override

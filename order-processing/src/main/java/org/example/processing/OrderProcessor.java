@@ -1,8 +1,17 @@
-package org.example;
+package org.example.processing;
+
+import org.example.model.Order;
+import org.example.model.OrderStatus;
+import org.example.model.Product;
+import org.example.model.exception.OrderProcessingException;
 
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * Процесор замовлень — обробляє замовлення з використанням узагальнень
+ * та функціонального інтерфейсу Consumer<T>.
+ */
 public class OrderProcessor<T extends Product> {
 
     private final String processorName;
@@ -24,12 +33,11 @@ public class OrderProcessor<T extends Product> {
         }
 
         order.setStatus(OrderStatus.PROCESSING);
-        handler.accept(order);         // виклик лямбди або посилання на метод
+        handler.accept(order);
         order.setStatus(OrderStatus.COMPLETED);
     }
 
     public void processAll(List<Order<T>> orders, Consumer<Order<T>> handler) {
-        // lambda: o -> process(o, handler)
         orders.forEach(order -> {
             try {
                 process(order, handler);

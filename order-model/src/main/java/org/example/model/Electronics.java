@@ -1,8 +1,11 @@
-package org.example;
+package org.example.model;
 
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * Товар категорії "Електроніка" з анотацією Lombok @Builder.
+ */
 @Getter
 public class Electronics extends Product {
 

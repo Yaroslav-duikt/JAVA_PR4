@@ -1,8 +1,11 @@
-package org.example;
+package org.example.model;
 
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * Товар категорії "Одяг" з анотацією Lombok @Builder.
+ */
 @Getter
 public class Clothing extends Product {
 

@@ -1,10 +1,18 @@
-package org.example;
+package org.example.threading;
+
+import org.example.model.Order;
+import org.example.model.Product;
+import org.example.processing.OrderProcessor;
+import org.example.storage.OrderRepository;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Менеджер потоків для багатопотокової обробки замовлень.
+ */
 public class OrderThreadManager {
 
     private static final int THREAD_COUNT = 3;
@@ -22,13 +30,11 @@ public class OrderThreadManager {
             OrderProcessor<T> processor) {
 
         for (Order<T> order : orders) {
-            // lambda: задача для потоку
             executor.submit(() -> {
                 String threadName = Thread.currentThread().getName();
                 System.out.printf("[%s] Починає обробку: #%s%n",
                         threadName, order.getOrderId());
                 try {
-                    // посилання на метод: OrderProcessor::printOrder
                     processor.process(order, OrderProcessor::printOrder);
                     repository.addOrder(order);
                 } catch (Exception e) {

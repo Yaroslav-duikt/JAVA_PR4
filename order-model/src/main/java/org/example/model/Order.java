@@ -1,7 +1,10 @@
-package org.example;
+package org.example.model;
 
 import java.util.UUID;
 
+/**
+ * Узагальнене замовлення з обмеженням типу <T extends Product>.
+ */
 public class Order<T extends Product> {
 
     private final String orderId;
